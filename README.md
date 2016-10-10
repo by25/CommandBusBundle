@@ -3,6 +3,15 @@ CommandBusBundle
 
 @todo Документация
 
+
+Install
+-------
+
+```
+composer require itmedia/command-bus-bundle 
+```
+
+
 CommandBus 
 -----------
 
