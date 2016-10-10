@@ -20,10 +20,9 @@ CommandBus
 ```yml
 services:
 
-    simple_command_bus:
+    app.command_bus:
         class: Infrastructure\CommandBusBundle\Command\CommandBus
-        arguments: ["@command_handler_mapper"]
-
+        arguments: ["@infrastructure_command_bus.handler_mapper"]
 ```
 
 
@@ -39,11 +38,11 @@ Middleware должны реализовывать интерфейс `Middlewar
 
 ```yml
 
-    app.query_bus:
+    app.command_bus:
         class: Infrastructure\CommandBusBundle\Command\CommandBus
-        arguments: ["@command_handler_mapper"]
+        arguments: ["@infrastructure_command_bus.handler_mapper"]
         calls:
-            - [addMiddleware, ["@core.middleware_validation"]]
+            - [addMiddleware, ["@infrastructure_command_bus.middleware_validation"]]
             - [addMiddleware, ["@app.middleware_access_control"]]
 
 
