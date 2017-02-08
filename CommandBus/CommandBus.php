@@ -10,7 +10,7 @@ use Itmedia\CommandBusBundle\Command\Command;
 use Itmedia\CommandBusBundle\Handler\ContainerCommandHandlerMapper;
 use Itmedia\CommandBusBundle\Middleware\Middleware;
 
-class CommandBus implements CommandBusInterface
+class CommandBus
 {
 
     /**
@@ -36,7 +36,9 @@ class CommandBus implements CommandBusInterface
 
 
     /**
-     * {@inheritdoc}
+     * Добавить доп. обработчик команды (Middleware)
+     *
+     * @param Middleware $middleware
      */
     public function addMiddleware(Middleware $middleware)
     {
@@ -45,7 +47,7 @@ class CommandBus implements CommandBusInterface
 
 
     /**
-     * {@inheritdoc}
+     * Handle command
      *
      * @param Command $command
      * @throws \Itmedia\CommandBusBundle\Exception\HandlerNotFoundException

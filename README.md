@@ -39,7 +39,7 @@ Middleware должны реализовывать интерфейс `Middlewar
 ```yml
 
     app.command_bus:
-        class: Itmedia\CommandBusBundle\Command\CommandBus
+        class: Itmedia\CommandBusBundle\CommandBus\CommandBus
         arguments: ["@infrastructure_command_bus.handler_mapper"]
         calls:
             - [addMiddleware, ["@infrastructure_command_bus.middleware_validation"]]
