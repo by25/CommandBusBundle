@@ -16,10 +16,8 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-
 class ValidationMiddlewareTest extends TestCase
 {
-
     public function testHandleFailed()
     {
         $this->loadConstraintsClass();
@@ -59,7 +57,6 @@ class ValidationMiddlewareTest extends TestCase
         $middleware = new ValidationMiddleware($validator);
 
         $middleware->handle($command);
-
     }
 
 
@@ -68,5 +65,4 @@ class ValidationMiddlewareTest extends TestCase
         new NotBlank();
         new Email();
     }
-
 }

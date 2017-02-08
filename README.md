@@ -28,8 +28,7 @@ Middleware
 
 Middleware реализуют дополнительную обработку сообщений, например: валидацию, проверку прав доступа, логирование.
 Middleware должны реализовывать интерфейс `MiddlewareInterface`. В CommandBus при выполнении сообщения
-происходит его обработка подключенными Middleware. При не выполнении правил, должно всегда выбрасываться  
-исключение.
+происходит его обработка подключенными Middleware. При не выполнении правил, должно всегда выбрасываться исключение.
 
 Пример конфигурации:
 
@@ -45,7 +44,6 @@ services:
     # custom middleware
     app.middleware_access_control:
         class: AppBundle\Middleware\AccessControlMiddleware
-
 ```
 
 
@@ -59,9 +57,7 @@ Command
 Команда должна иметь интерфейс `Command`.
 
 ```php
-
 use Itmedia\CommandBusBundle\Command\Command;
-
 
 class TestCommand implements Command
 {
@@ -119,16 +115,13 @@ services:
         arguments: ["@itmedia_command_bus.handler_mapper"]
         calls:
             - [addMiddleware, ["@itmedia_command_bus.middleware_validation"]]
-
 ```
 
 Пример правил валидации команды:
 
 ```php
-
 use Itmedia\CommandBusBundle\Command\Command;
 use Symfony\Component\Validator\Constraints as Assert;
-
 
 class TestCommand implements Command
 {
@@ -179,7 +172,6 @@ class TestCommand implements Command
     }
 
 }
-
 ```
 
 Если комманда не проходит валидацию выбрасывается исключение `ValidationException`
@@ -193,7 +185,6 @@ class TestCommand implements Command
 
 
 ```php
-
 use Itmedia\CommandBusBundle\Command\Command;
 use Itmedia\CommandBusBundle\Command\HandlePropertiesFormArrayTrait;
 
@@ -210,6 +201,5 @@ class TestCommand implements Command
         $this->id = $id;
     }
 
-}
-    
+}    
 ```

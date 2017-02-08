@@ -6,7 +6,6 @@
 
 namespace Itmedia\CommandBusBundle\Command;
 
-
 interface Command
 {
     /**

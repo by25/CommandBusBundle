@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class TestCommand implements Command
 {
-
     use HandlePropertiesFormArrayTrait;
 
     /**
@@ -63,6 +62,4 @@ class TestCommand implements Command
     {
         return $this->email;
     }
-
-
 }

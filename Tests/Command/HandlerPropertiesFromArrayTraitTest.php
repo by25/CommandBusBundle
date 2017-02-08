@@ -23,12 +23,11 @@ class HandlerPropertiesFromArrayTraitTest extends TestCase
      */
     public function testHandleFromArray($data, $username, $email)
     {
-                $command = new TestCommand();
+        $command = new TestCommand();
         $command->handleFromArray($data);
 
         $this->assertEquals($command->getEmail(), $email);
         $this->assertEquals($command->getUsername(), $username);
-
     }
 
     public function provideArrayCommand()
@@ -39,6 +38,4 @@ class HandlerPropertiesFromArrayTraitTest extends TestCase
             [['email' => 'test@test.com'], null, 'test@test.com'],
         ];
     }
-
-
 }

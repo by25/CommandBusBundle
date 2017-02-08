@@ -15,6 +15,5 @@ class ItmediaCommandBusBundle extends Bundle
             'command_handler',
             'command'
         ));
-
     }
 }
