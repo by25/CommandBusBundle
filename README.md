@@ -21,7 +21,7 @@ CommandBus
 services:
 
     app.command_bus:
-        class: Infrastructure\CommandBusBundle\Command\CommandBus
+        class: Itmedia\CommandBusBundle\Command\CommandBus
         arguments: ["@infrastructure_command_bus.handler_mapper"]
 ```
 
@@ -39,7 +39,7 @@ Middleware должны реализовывать интерфейс `Middlewar
 ```yml
 
     app.command_bus:
-        class: Infrastructure\CommandBusBundle\Command\CommandBus
+        class: Itmedia\CommandBusBundle\Command\CommandBus
         arguments: ["@infrastructure_command_bus.handler_mapper"]
         calls:
             - [addMiddleware, ["@infrastructure_command_bus.middleware_validation"]]
@@ -47,7 +47,7 @@ Middleware должны реализовывать интерфейс `Middlewar
 
 
     app.middleware_access_control:
-        class: Infrastructure\CommandBusBundle\Middleware\AccessControlMiddleware
+        class: Itmedia\CommandBusBundle\Middleware\AccessControlMiddleware
 
 ```
 
@@ -70,14 +70,14 @@ Handlers могут иметь произвольную структуру, ес
 services:
     # по умолчанию будет вызван метод execute()
     handler1:
-        class: Infrastructure\CommandBusBundle\Test\HandlerTest
+        class: Itmedia\CommandBusBundle\Test\HandlerTest
         tags:
             - {name: command_handler, command: core_register_user } 
 
 
     # явное указание методов
     handler:
-        class: Infrastructure\CommandBusBundle\Test\HandlerTest
+        class: Itmedia\CommandBusBundle\Test\HandlerTest
         tags:
             - {name: command_handler, command: core_register_user1, method: methodName1 }
             - {name: command_handler, command: core_register_user2, method: methodName2 }

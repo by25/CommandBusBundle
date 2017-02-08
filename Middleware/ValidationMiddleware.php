@@ -4,9 +4,10 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Middleware;
+namespace Itmedia\CommandBusBundle\Middleware;
 
-use Infrastructure\CommandBusBundle\Exception\ValidationException;
+use Itmedia\CommandBusBundle\Command\Command;
+use Itmedia\CommandBusBundle\Exception\ValidationException;
 use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -31,7 +32,7 @@ class ValidationMiddleware implements MiddlewareInterface
     }
 
 
-    public function handle($message)
+    public function handle(Command $message)
     {
         $violations = $this->validator->validate($message);
 

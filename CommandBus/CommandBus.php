@@ -4,10 +4,11 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Command;
+namespace Itmedia\CommandBusBundle\CommandBus;
 
-use Infrastructure\CommandBusBundle\Middleware\MiddlewareInterface;
-use Infrastructure\CommandBusBundle\Handler\HandlerMapper;
+use Itmedia\CommandBusBundle\Command\Command;
+use Itmedia\CommandBusBundle\Middleware\MiddlewareInterface;
+use Itmedia\CommandBusBundle\Handler\HandlerMapper;
 
 class CommandBus implements CommandBusInterface
 {
@@ -46,18 +47,18 @@ class CommandBus implements CommandBusInterface
     /**
      * {@inheritdoc}
      *
-     * @param CommandInterface $command
-     * @throws \Infrastructure\CommandBusBundle\Exception\HandlerNotFoundException
+     * @param Command $command
+     * @throws \Itmedia\CommandBusBundle\Exception\HandlerNotFoundException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException
      * @throws \Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException
      */
-    public function handle(CommandInterface $command)
+    public function handle(Command $command)
     {
         foreach ($this->middleware as $middleware) {
             $middleware->handle($command);
         }
 
-        $handler = $this->handlerMapper->get($command->messageName());
+        $handler = $this->handlerMapper->get($command->commandName());
         call_user_func($handler, $command);
     }
 }

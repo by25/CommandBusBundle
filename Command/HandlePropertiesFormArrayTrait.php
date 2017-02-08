@@ -3,7 +3,7 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Message;
+namespace Itmedia\CommandBusBundle\Command;
 
 trait HandlePropertiesFormArrayTrait
 {

@@ -4,7 +4,7 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\DependencyInjection\Compiler;
+namespace Itmedia\CommandBusBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

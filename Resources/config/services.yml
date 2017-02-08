@@ -4,14 +4,14 @@ services:
 # -------------- Middlewares ---------------
 
     infrastructure_command_bus.middleware_validation:
-        class: Infrastructure\CommandBusBundle\Middleware\ValidationMiddleware
+        class: Itmedia\CommandBusBundle\Middleware\ValidationMiddleware
         arguments: ["@validator"]
 
 
 # --------- Handler Mapper ---------------
 
     infrastructure_command_bus.handler_mapper:
-        class: Infrastructure\CommandBusBundle\Handler\HandlerMapper
+        class: Itmedia\CommandBusBundle\Handler\HandlerMapper
         arguments: ["@service_container",[]]
 
 

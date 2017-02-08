@@ -4,9 +4,9 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Handler;
+namespace Itmedia\CommandBusBundle\Handler;
 
-use Infrastructure\CommandBusBundle\Exception\HandlerNotFoundException;
+use Itmedia\CommandBusBundle\Exception\HandlerNotFoundException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;

@@ -3,10 +3,10 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Tests\Handler;
+namespace Itmedia\CommandBusBundle\Tests\Handler;
 
-use Infrastructure\CommandBusBundle\Exception\HandlerNotFoundException;
-use Infrastructure\CommandBusBundle\Handler\HandlerMapper;
+use Itmedia\CommandBusBundle\Exception\HandlerNotFoundException;
+use Itmedia\CommandBusBundle\Handler\HandlerMapper;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

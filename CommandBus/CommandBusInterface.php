@@ -4,18 +4,19 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Command;
+namespace Itmedia\CommandBusBundle\CommandBus;
 
-use Infrastructure\CommandBusBundle\Middleware\MiddlewareInterface;
+use Itmedia\CommandBusBundle\Command\Command;
+use Itmedia\CommandBusBundle\Middleware\MiddlewareInterface;
 
 interface CommandBusInterface
 {
     /**
      * Выполнить команду
      *
-     * @param CommandInterface $command
+     * @param Command $command
      */
-    public function handle(CommandInterface $command);
+    public function handle(Command $command);
 
     /**
      * Добавить доп. обработчик команды (Middleware)

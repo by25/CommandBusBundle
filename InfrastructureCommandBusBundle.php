@@ -1,8 +1,8 @@
 <?php
 
-namespace Infrastructure\CommandBusBundle;
+namespace Itmedia\CommandBusBundle;
 
-use Infrastructure\CommandBusBundle\DependencyInjection\Compiler\RegisterCommandHandlersCompilerPass;
+use Itmedia\CommandBusBundle\DependencyInjection\Compiler\RegisterCommandHandlersCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

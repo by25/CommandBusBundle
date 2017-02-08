@@ -4,7 +4,7 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Exception;
+namespace Itmedia\CommandBusBundle\Exception;
 
 class HandlerNotFoundException extends \Exception
 {

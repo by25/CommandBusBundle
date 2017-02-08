@@ -4,7 +4,9 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Infrastructure\CommandBusBundle\Middleware;
+namespace Itmedia\CommandBusBundle\Middleware;
+
+use Itmedia\CommandBusBundle\Command\Command;
 
 /**
  * Дополнительный обработчик команды для CommandBus
@@ -17,5 +19,5 @@ interface MiddlewareInterface
      *
      * @param $message
      */
-    public function handle($message);
+    public function handle(Command $message);
 }
