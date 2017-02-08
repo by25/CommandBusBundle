@@ -7,19 +7,19 @@
 namespace Itmedia\CommandBusBundle\CommandBus;
 
 use Itmedia\CommandBusBundle\Command\Command;
-use Itmedia\CommandBusBundle\Middleware\MiddlewareInterface;
-use Itmedia\CommandBusBundle\Handler\HandlerMapper;
+use Itmedia\CommandBusBundle\Handler\ContainerCommandHandlerMapper;
+use Itmedia\CommandBusBundle\Middleware\Middleware;
 
 class CommandBus implements CommandBusInterface
 {
 
     /**
-     * @var HandlerMapper
+     * @var ContainerCommandHandlerMapper
      */
     private $handlerMapper;
 
     /**
-     * @var MiddlewareInterface[]
+     * @var Middleware[]
      */
     private $middleware = [];
 
@@ -27,9 +27,9 @@ class CommandBus implements CommandBusInterface
     /**
      * CommandBus constructor.
      *
-     * @param HandlerMapper $handlerMapper
+     * @param ContainerCommandHandlerMapper $handlerMapper
      */
-    public function __construct(HandlerMapper $handlerMapper)
+    public function __construct(ContainerCommandHandlerMapper $handlerMapper)
     {
         $this->handlerMapper = $handlerMapper;
     }
@@ -38,7 +38,7 @@ class CommandBus implements CommandBusInterface
     /**
      * {@inheritdoc}
      */
-    public function addMiddleware(MiddlewareInterface $middleware)
+    public function addMiddleware(Middleware $middleware)
     {
         $this->middleware[] = $middleware;
     }

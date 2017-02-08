@@ -11,7 +11,7 @@ use Itmedia\CommandBusBundle\Command\Command;
 /**
  * Дополнительный обработчик команды для CommandBus
  */
-interface MiddlewareInterface
+interface Middleware
 {
 
     /**

@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
-class HandlerMapper
+class ContainerCommandHandlerMapper implements CommandHandlerMapper
 {
     /**
      * Карта методов вызова
@@ -40,21 +40,21 @@ class HandlerMapper
 
 
     /**
-     * @param $messageName
+     * @param $commandName
      *
      * @return callable
      * @throws HandlerNotFoundException|ServiceNotFoundException|ServiceCircularReferenceException
      */
-    public function get($messageName)
+    public function get($commandName)
     {
-        if (!array_key_exists($messageName, $this->callableMap)) {
+        if (!array_key_exists($commandName, $this->callableMap)) {
             throw new HandlerNotFoundException(sprintf(
                 'Could not find a handler for name "%s"',
-                $messageName
+                $commandName
             ));
         }
 
-        $callable = $this->callableMap[$messageName];
+        $callable = $this->callableMap[$commandName];
 
         $methodName = $callable['method'] ?: 'execute';
 

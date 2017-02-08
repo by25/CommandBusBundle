@@ -7,7 +7,7 @@
 namespace Itmedia\CommandBusBundle\CommandBus;
 
 use Itmedia\CommandBusBundle\Command\Command;
-use Itmedia\CommandBusBundle\Middleware\MiddlewareInterface;
+use Itmedia\CommandBusBundle\Middleware\Middleware;
 
 interface CommandBusInterface
 {
@@ -21,7 +21,7 @@ interface CommandBusInterface
     /**
      * Добавить доп. обработчик команды (Middleware)
      *
-     * @param MiddlewareInterface $middleware
+     * @param Middleware $middleware
      */
-    public function addMiddleware(MiddlewareInterface $middleware);
+    public function addMiddleware(Middleware $middleware);
 }

@@ -89,7 +89,7 @@ class RegisterCommandHandlersCompilerPass implements CompilerPassInterface
 
         $definition->replaceArgument(1, $handlers);
 
-        $parameterName = 'infrastructure_command_bus.messages';
+        $parameterName = 'itmedia_command_bus.commands';
 
         $messages = array_keys($handlers);
         if ($container->hasParameter($parameterName)) {

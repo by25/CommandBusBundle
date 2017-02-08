@@ -11,14 +11,15 @@
     }
   ],
   "require": {
-    "php": "^5.6 || ^7.0"
+    "php": "^5.6 || ^7.0",
+    "symfony/symfony": "^3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.2"
   },
   "autoload": {
     "psr-4": {
-      "Infrastructure\\CommandBusBundle\\": ""
+      "Itmedia\\CommandBusBundle\\": ""
     }
   }
 }

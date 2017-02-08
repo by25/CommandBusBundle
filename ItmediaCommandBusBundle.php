@@ -6,12 +6,12 @@ use Itmedia\CommandBusBundle\DependencyInjection\Compiler\RegisterCommandHandler
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class InfrastructureCommandBusBundle extends Bundle
+class ItmediaCommandBusBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new RegisterCommandHandlersCompilerPass(
-            'infrastructure_command_bus.handler_mapper',
+            'itmedia_command_bus.handler_mapper',
             'command_handler',
             'command'
         ));

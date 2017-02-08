@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 /**
  * Валидатор сообщение с помощью компонента Symfony\Component\Validator
  */
-class ValidationMiddleware implements MiddlewareInterface
+class ValidationMiddleware implements Middleware
 {
     /**
      * @var ValidatorInterface

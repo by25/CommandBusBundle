@@ -6,11 +6,11 @@
 namespace Itmedia\CommandBusBundle\Tests\Handler;
 
 use Itmedia\CommandBusBundle\Exception\HandlerNotFoundException;
-use Itmedia\CommandBusBundle\Handler\HandlerMapper;
+use Itmedia\CommandBusBundle\Handler\ContainerCommandHandlerMapper;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class HandlerMapperTest extends TestCase
+class ContainerHandlerMapperTest extends TestCase
 {
 
 
@@ -29,7 +29,7 @@ class HandlerMapperTest extends TestCase
             ->will($this->returnValue($callableService));
 
 
-        $mapper = new HandlerMapper($container, [
+        $mapper = new ContainerCommandHandlerMapper($container, [
             'message1' => [
                 'service' => 'service1',
                 'method' => 'getMethod'

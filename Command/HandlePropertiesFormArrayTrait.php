@@ -7,7 +7,7 @@ namespace Itmedia\CommandBusBundle\Command;
 
 trait HandlePropertiesFormArrayTrait
 {
-    public function handleProperties(array $array)
+    private function handleProperties(array $array)
     {
         foreach ($array as $property => $value) {
             if (property_exists($this, $property)) {
