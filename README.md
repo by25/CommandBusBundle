@@ -1,6 +1,10 @@
 CommandBusBundle
 ================
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/by25/CommandBusBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/by25/CommandBusBundle/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/by25/CommandBusBundle/badges/build.png?b=master)](https://scrutinizer-ci.com/g/by25/CommandBusBundle/build-status/master)
+
+
 Install
 -------
 
