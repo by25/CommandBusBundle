@@ -1,13 +1,10 @@
 CommandBusBundle
-==========
-
-@todo Документация
-
+================
 
 Install
 -------
 
-```
+```bash
 composer require itmedia/command-bus-bundle 
 ```
 
@@ -15,14 +12,14 @@ composer require itmedia/command-bus-bundle
 CommandBus 
 -----------
 
-Пример создания ниже, также смотри добавление поведения (Middleware):
+Пример регистрации сервиса, также смотри ниже добавление встроеных обработчиков комманд (Middleware):
 
-```yml
+```yaml
 services:
 
     app.command_bus:
-        class: Itmedia\CommandBusBundle\Command\CommandBus
-        arguments: ["@infrastructure_command_bus.handler_mapper"]
+        class: Itmedia\CommandBusBundle\CommandBus\CommandBus
+        arguments: ["@itmedia_command_bus.handler_mapper"]
 ```
 
 
@@ -36,21 +33,20 @@ Middleware должны реализовывать интерфейс `Middlewar
 
 Пример конфигурации:
 
-```yml
-
+```yaml
+services:
     app.command_bus:
         class: Itmedia\CommandBusBundle\CommandBus\CommandBus
-        arguments: ["@infrastructure_command_bus.handler_mapper"]
+        arguments: ["@itmedia_command_bus.handler_mapper"]
         calls:
-            - [addMiddleware, ["@infrastructure_command_bus.middleware_validation"]]
-            - [addMiddleware, ["@app.middleware_access_control"]]
+            - [addMiddleware, ["@itmedia_command_bus.middleware_validation"]]
+            - [addMiddleware, ["@app.middleware_access_control"]] 
 
-
+    # custom middleware
     app.middleware_access_control:
-        class: Itmedia\CommandBusBundle\Middleware\AccessControlMiddleware
+        class: AppBundle\Middleware\AccessControlMiddleware
 
 ```
-
 
 
 ---
@@ -60,24 +56,41 @@ Middleware должны реализовывать интерфейс `Middlewar
 Command
 -------
 
-Команда должна иметь интерфейс `CommandInterface`.
+Команда должна иметь интерфейс `Command`.
+
+```php
+
+use Itmedia\CommandBusBundle\Command\Command;
+
+
+class TestCommand implements Command
+{
+    //...
+
+    public function commandName()
+    {
+        return 'test_command';
+    }
+
+}
+```
  
-Handlers могут иметь произвольную структуру, если используется, либо для единичного handler - `CommandHandlerInterface`
+Handlers могут иметь произвольную структуру, если используется, либо для единичного handler - `CommandHandler`
 
-Пример конфигурации:
+Пример конфигурации `CommandHandler`:
 
-```yml
+```yaml
 services:
     # по умолчанию будет вызван метод execute()
     handler1:
-        class: Itmedia\CommandBusBundle\Test\HandlerTest
+        class: AppBundle\Handler\MyHandler
         tags:
             - {name: command_handler, command: core_register_user } 
 
 
     # явное указание методов
-    handler:
-        class: Itmedia\CommandBusBundle\Test\HandlerTest
+    handler2:
+        class: AppBundle\Handler\NyHandler2
         tags:
             - {name: command_handler, command: core_register_user1, method: methodName1 }
             - {name: command_handler, command: core_register_user2, method: methodName2 }
@@ -86,11 +99,117 @@ services:
 
 Пример использования:
 
-```
+```php
     $command = new CommandTest();
-    $this->get('command_bus')->handle($command);
+    $this->get('app.command_bus')->handle($command);
 ```
 
 
 
+Валидация команд 
+----------------
 
+Для валидации команд средствами `symfony/validator` необходимо подключить `ValidationMiddleware` для `CommandBus`:
+
+
+```yaml
+services:
+    app.command_bus:
+        class: Itmedia\CommandBusBundle\CommandBus\CommandBus
+        arguments: ["@itmedia_command_bus.handler_mapper"]
+        calls:
+            - [addMiddleware, ["@itmedia_command_bus.middleware_validation"]]
+
+```
+
+Пример правил валидации команды:
+
+```php
+
+use Itmedia\CommandBusBundle\Command\Command;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
+class TestCommand implements Command
+{
+
+    /**
+     * @var string
+     * @NotBlank()
+     */
+    private $username;
+
+    /**
+     * @var string
+     * @NotBlank()
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
+     * TestCommand constructor.
+     * @param string $username
+     * @param string $email
+     */
+    public function __construct($username, $email)
+    {
+        $this->username = $username;
+        $this->email = $email;
+    }
+
+    public function commandName()
+    {
+        return 'test_command';
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+}
+
+```
+
+Если комманда не проходит валидацию выбрасывается исключение `ValidationException`
+
+
+Установка значений свойств комманды из массива 
+----------------------------------------------
+
+`HandlePropertiesFormArrayTrait` - вспомогательный трейт для устаовки значений по ключу из массива
+в свойства команды. Название ключа должно соответсвовать названию свойства.
+
+
+```php
+
+use Itmedia\CommandBusBundle\Command\Command;
+use Itmedia\CommandBusBundle\Command\HandlePropertiesFormArrayTrait;
+
+class TestCommand implements Command
+{
+
+    use HandlePropertiesFormArrayTrait;
+    
+    // ....
+  
+    public function __construct($id, array $data)
+    {
+        $this->handleProperties($data);
+        $this->id = $id;
+    }
+
+}
+    
+```

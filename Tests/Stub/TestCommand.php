@@ -15,27 +15,21 @@ class TestCommand implements Command
 {
 
     use HandlePropertiesFormArrayTrait;
+
     /**
      * @var string
-     *
      * @NotBlank()
-     *
      */
     private $username;
 
     /**
      * @var string
-     *
      * @NotBlank()
      * @Assert\Email()
      */
     private $email;
 
-    /**
-     * TestCommand constructor.
-     * @param string $username
-     * @param string $email
-     */
+
     public function handle($username, $email)
     {
         $this->username = $username;
