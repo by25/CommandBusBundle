@@ -10,5 +10,4 @@ use Infrastructure\CommandBusBundle\Message\NamedMessageInterface;
 
 interface CommandInterface extends NamedMessageInterface
 {
-
 }

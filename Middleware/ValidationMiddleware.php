@@ -36,7 +36,6 @@ class ValidationMiddleware implements MiddlewareInterface
         $violations = $this->validator->validate($message);
 
         if (count($violations) !== 0) {
-
             $errors = [];
 
             /**
@@ -49,6 +48,4 @@ class ValidationMiddleware implements MiddlewareInterface
             throw new ValidationException($errors);
         }
     }
-
-
 }

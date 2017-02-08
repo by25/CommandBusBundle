@@ -8,5 +8,4 @@ namespace Infrastructure\CommandBusBundle\Exception;
 
 class HandlerNotFoundException extends \Exception
 {
-
 }

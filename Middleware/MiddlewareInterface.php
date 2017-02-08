@@ -6,7 +6,6 @@
 
 namespace Infrastructure\CommandBusBundle\Middleware;
 
-
 /**
  * Дополнительный обработчик команды для CommandBus
  */
@@ -19,5 +18,4 @@ interface MiddlewareInterface
      * @param $message
      */
     public function handle($message);
-
 }

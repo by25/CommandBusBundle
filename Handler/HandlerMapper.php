@@ -6,7 +6,6 @@
 
 namespace Infrastructure\CommandBusBundle\Handler;
 
-
 use Infrastructure\CommandBusBundle\Exception\HandlerNotFoundException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
@@ -48,7 +47,6 @@ class HandlerMapper
      */
     public function get($messageName)
     {
-
         if (!array_key_exists($messageName, $this->callableMap)) {
             throw new HandlerNotFoundException(sprintf(
                 'Could not find a handler for name "%s"',
@@ -64,8 +62,5 @@ class HandlerMapper
             $this->container->get($callable['service']),
             $methodName
         ];
-
     }
-
-
 }

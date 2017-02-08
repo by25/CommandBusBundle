@@ -11,8 +11,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class RegisterCommandHandlersCompilerPass implements CompilerPassInterface
 {
-
-
     private $serviceId;
 
     private $tag;
@@ -100,6 +98,4 @@ class RegisterCommandHandlersCompilerPass implements CompilerPassInterface
 
         $container->setParameter($parameterName, $messages);
     }
-
-
 }

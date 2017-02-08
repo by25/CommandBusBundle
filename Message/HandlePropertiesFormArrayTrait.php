@@ -5,10 +5,8 @@
 
 namespace Infrastructure\CommandBusBundle\Message;
 
-
 trait HandlePropertiesFormArrayTrait
 {
-
     public function handleProperties(array $array)
     {
         foreach ($array as $property => $value) {

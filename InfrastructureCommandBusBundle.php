@@ -16,13 +16,5 @@ class InfrastructureCommandBusBundle extends Bundle
             'command'
         ));
 
-
-//        $container->addCompilerPass(new RegisterCommandHandlersCompilerPass(
-//            'infrastructure_command_bus.query_handler_mapper',
-//            'query_handler',
-//            'query'
-//        ));
-
     }
-
 }

@@ -6,7 +6,6 @@
 
 namespace Infrastructure\CommandBusBundle\Command;
 
-
 use Infrastructure\CommandBusBundle\Middleware\MiddlewareInterface;
 
 interface CommandBusInterface

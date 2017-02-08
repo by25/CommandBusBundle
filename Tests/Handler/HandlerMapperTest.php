@@ -5,7 +5,6 @@
 
 namespace Infrastructure\CommandBusBundle\Tests\Handler;
 
-
 use Infrastructure\CommandBusBundle\Exception\HandlerNotFoundException;
 use Infrastructure\CommandBusBundle\Handler\HandlerMapper;
 use PHPUnit\Framework\TestCase;
@@ -62,6 +61,4 @@ class HandlerMapperTest extends TestCase
             ['message_fail', false],
         ];
     }
-
-
 }

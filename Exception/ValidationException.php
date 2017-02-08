@@ -10,7 +10,6 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 class ValidationException extends \RuntimeException
 {
-
     protected $messages = [];
 
     /**

@@ -6,7 +6,6 @@
 
 namespace Infrastructure\CommandBusBundle\Command;
 
-
 use Infrastructure\CommandBusBundle\Middleware\MiddlewareInterface;
 use Infrastructure\CommandBusBundle\Handler\HandlerMapper;
 
@@ -61,6 +60,4 @@ class CommandBus implements CommandBusInterface
         $handler = $this->handlerMapper->get($command->messageName());
         call_user_func($handler, $command);
     }
-
-
 }
