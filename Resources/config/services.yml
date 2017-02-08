@@ -11,10 +11,6 @@ services:
 # --------- Handler Mapper ---------------
 
     itmedia_command_bus.container_handler_mapper:
-        class: Itmedia\CommandBusBundle\Handler\HandlerMapper
+        class: Itmedia\CommandBusBundle\Handler\ContainerCommandHandlerMapper
         arguments: ["@service_container",[]]
-
-
-
-
 

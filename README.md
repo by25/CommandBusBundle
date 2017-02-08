@@ -19,7 +19,7 @@ services:
 
     app.command_bus:
         class: Itmedia\CommandBusBundle\CommandBus\CommandBus
-        arguments: ["@itmedia_command_bus.handler_mapper"]
+        arguments: ["@itmedia_command_bus.container_handler_mapper"]
 ```
 
 
@@ -36,7 +36,7 @@ Middleware должны реализовывать интерфейс `Middlewar
 services:
     app.command_bus:
         class: Itmedia\CommandBusBundle\CommandBus\CommandBus
-        arguments: ["@itmedia_command_bus.handler_mapper"]
+        arguments: ["@itmedia_command_bus.container_handler_mapper"]
         calls:
             - [addMiddleware, ["@itmedia_command_bus.middleware_validation"]]
             - [addMiddleware, ["@app.middleware_access_control"]] 
@@ -112,7 +112,7 @@ services:
 services:
     app.command_bus:
         class: Itmedia\CommandBusBundle\CommandBus\CommandBus
-        arguments: ["@itmedia_command_bus.handler_mapper"]
+        arguments: ["@itmedia_command_bus.container_handler_mapper"]
         calls:
             - [addMiddleware, ["@itmedia_command_bus.middleware_validation"]]
 ```

@@ -11,7 +11,7 @@ class ItmediaCommandBusBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new RegisterCommandHandlersCompilerPass(
-            'itmedia_command_bus.handler_mapper',
+            'itmedia_command_bus.container_handler_mapper',
             'command_handler',
             'command'
         ));
