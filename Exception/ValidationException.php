@@ -7,6 +7,9 @@
 namespace Itmedia\CommandBusBundle\Exception;
 
 use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Validator\ConstraintViolation;
+use Symfony\Component\Validator\ConstraintViolationInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class ValidationException extends \RuntimeException
 {
@@ -20,6 +23,25 @@ class ValidationException extends \RuntimeException
         $this->messages = $messages;
         parent::__construct(count($messages) ? reset($this->messages) : '', $code, $previous);
     }
+
+
+    /**
+     * @param ConstraintViolationListInterface $vilations
+     * @return ValidationException
+     */
+    public static function createFromConstraintViolationList(ConstraintViolationListInterface $list): self
+    {
+        $messages = [];
+        /**
+         * @var ConstraintViolationInterface $violation
+         */
+        foreach ($list as $violation) {
+            $messages[$violation->getPropertyPath()] = $violation->getMessage();
+        }
+
+        return new self($messages);
+    }
+
 
     /**
      * @return array
