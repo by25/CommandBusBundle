@@ -16,23 +16,15 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  */
 class ValidationMiddleware implements Middleware
 {
-    /**
-     * @var ValidatorInterface
-     */
-    private $validator;
+    private ValidatorInterface $validator;
 
-    /**
-     * ValidationMiddleware constructor.
-     *
-     * @param ValidatorInterface $validator
-     */
     public function __construct(ValidatorInterface $validator)
     {
         $this->validator = $validator;
     }
 
 
-    public function handle(Command $message)
+    public function handle(Command $message): void
     {
         $violations = $this->validator->validate($message);
 

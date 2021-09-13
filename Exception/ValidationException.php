@@ -13,7 +13,7 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class ValidationException extends \RuntimeException
 {
-    protected $messages = [];
+    protected array $messages = [];
 
     /**
      * {@inheritdoc}

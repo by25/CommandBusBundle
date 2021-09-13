@@ -50,9 +50,7 @@ services:
         class: AppBundle\Middleware\AccessControlMiddleware
 ```
 
-
 ---
-
 
 
 Command
@@ -82,15 +80,15 @@ Handlers могут иметь произвольную структуру, ес
 ```yaml
 services:
     # по умолчанию будет вызван метод execute()
-    handler1:
-        class: AppBundle\Handler\MyHandler
+    AppBundle\Handler\MyHandler:
+        public: true
         tags:
             - {name: command_handler, command: core_register_user } 
 
 
     # явное указание методов
-    handler2:
-        class: AppBundle\Handler\NyHandler2
+    AppBundle\Handler\NyHandler2:
+        public: true
         tags:
             - {name: command_handler, command: core_register_user1, method: methodName1 }
             - {name: command_handler, command: core_register_user2, method: methodName2 }
@@ -114,8 +112,7 @@ services:
 
 ```yaml
 services:
-    app.command_bus:
-        class: Itmedia\CommandBusBundle\CommandBus\CommandBus
+    Itmedia\CommandBusBundle\CommandBus\CommandBus:
         arguments: ["@itmedia_command_bus.container_handler_mapper"]
         calls:
             - [addMiddleware, ["@itmedia_command_bus.middleware_validation"]]

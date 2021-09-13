@@ -11,20 +11,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class RegisterCommandHandlersCompilerPass implements CompilerPassInterface
 {
-    private $serviceId;
+    private const PARAMETER_NAME = 'itmedia_command_bus.commands';
+    private string $serviceId;
+    private string $tag;
+    private string $keyAttribute;
 
-    private $tag;
-
-    private $keyAttribute;
-
-    /**
-     * RegisterHandlers constructor.
-     *
-     * @param $serviceId
-     * @param $tag
-     * @param $keyAttribute
-     */
-    public function __construct($serviceId, $tag, $keyAttribute)
+    public function __construct(string $serviceId, string $tag, string $keyAttribute)
     {
         $this->serviceId = $serviceId;
         $this->tag = $tag;
@@ -65,21 +57,17 @@ class RegisterCommandHandlersCompilerPass implements CompilerPassInterface
                 ];
 
                 if (array_key_exists('method', $tagAttributes)) {
-                    $callable['service'] = $serviceId;
                     $callable['method'] = $tagAttributes['method'];
-                } else {
-                    $callable['service'] = $serviceId;
                 }
+                $callable['service'] = $serviceId;
+
 
                 $key = $tagAttributes[$this->keyAttribute];
                 $key = ltrim($key, '\\');
 
                 if (array_key_exists($key, $handlers)) {
                     throw new \InvalidArgumentException(
-                        sprintf(
-                            'Для обработчика команды "%s" уже создан обработчик',
-                            $key
-                        )
+                        sprintf('Handler for command "%s" already exists', $key)
                     );
                 }
 
@@ -89,13 +77,11 @@ class RegisterCommandHandlersCompilerPass implements CompilerPassInterface
 
         $definition->replaceArgument(1, $handlers);
 
-        $parameterName = 'itmedia_command_bus.commands';
-
         $messages = array_keys($handlers);
-        if ($container->hasParameter($parameterName)) {
-            $messages = array_merge($container->getParameter($parameterName), $messages);
+        if ($container->hasParameter(self::PARAMETER_NAME)) {
+            $messages = array_merge($container->getParameter(self::PARAMETER_NAME), $messages);
         }
 
-        $container->setParameter($parameterName, $messages);
+        $container->setParameter(self::PARAMETER_NAME, $messages);
     }
 }

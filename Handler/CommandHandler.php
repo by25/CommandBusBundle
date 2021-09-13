@@ -10,5 +10,5 @@ use Itmedia\CommandBusBundle\Command\Command;
 
 interface CommandHandler
 {
-    public function execute(Command $command);
+    public function execute(Command $command): void;
 }

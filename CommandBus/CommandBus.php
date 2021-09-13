@@ -7,29 +7,20 @@
 namespace Itmedia\CommandBusBundle\CommandBus;
 
 use Itmedia\CommandBusBundle\Command\Command;
+use Itmedia\CommandBusBundle\Handler\CommandHandlerMapper;
 use Itmedia\CommandBusBundle\Handler\ContainerCommandHandlerMapper;
 use Itmedia\CommandBusBundle\Middleware\Middleware;
 
 class CommandBus
 {
-
-    /**
-     * @var ContainerCommandHandlerMapper
-     */
-    private $handlerMapper;
+    private CommandHandlerMapper $handlerMapper;
 
     /**
      * @var Middleware[]
      */
-    private $middleware = [];
+    private array $middleware = [];
 
-
-    /**
-     * CommandBus constructor.
-     *
-     * @param ContainerCommandHandlerMapper $handlerMapper
-     */
-    public function __construct(ContainerCommandHandlerMapper $handlerMapper)
+    public function __construct(CommandHandlerMapper $handlerMapper)
     {
         $this->handlerMapper = $handlerMapper;
     }
@@ -37,8 +28,6 @@ class CommandBus
 
     /**
      * Добавить доп. обработчик команды (Middleware)
-     *
-     * @param Middleware $middleware
      */
     public function addMiddleware(Middleware $middleware)
     {

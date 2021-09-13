@@ -14,10 +14,5 @@ use Itmedia\CommandBusBundle\Command\Command;
 interface Middleware
 {
 
-    /**
-     * Обработка команды/запроса
-     *
-     * @param $message
-     */
-    public function handle(Command $message);
+    public function handle(Command $message): void;
 }

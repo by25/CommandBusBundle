@@ -8,9 +8,5 @@ namespace Itmedia\CommandBusBundle\Command;
 
 interface Command
 {
-    /**
-     * Имя сообщения
-     * @return string
-     */
-    public function commandName();
+    public function commandName(): string;
 }
