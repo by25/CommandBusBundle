@@ -65,7 +65,7 @@ class TestCommand implements Command
 {
     //...
 
-    public function commandName()
+    public function commandName(): string
     {
         return 'test_command';
     }
@@ -128,46 +128,33 @@ class TestCommand implements Command
 {
 
     /**
-     * @var string
      * @NotBlank()
      */
-    private $username;
+    private string $username;
 
     /**
-     * @var string
      * @NotBlank()
      * @Assert\Email()
      */
-    private $email;
+    private string $email;
 
-    /**
-     * TestCommand constructor.
-     * @param string $username
-     * @param string $email
-     */
-    public function __construct($username, $email)
+    public function __construct(string $username, string $email)
     {
         $this->username = $username;
         $this->email = $email;
     }
 
-    public function commandName()
+    public function commandName(): string
     {
         return 'test_command';
     }
 
-    /**
-     * @return string
-     */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }

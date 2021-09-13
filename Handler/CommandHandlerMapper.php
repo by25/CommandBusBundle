@@ -9,9 +9,7 @@ namespace Itmedia\CommandBusBundle\Handler;
 interface CommandHandlerMapper
 {
     /**
-     * @param $commandName
-     *
      * @return callable
      */
-    public function get($commandName);
+    public function get(string $commandName);
 }

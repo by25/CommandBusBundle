@@ -53,7 +53,7 @@ class ContainerHandlerMapperTest extends TestCase
     }
 
 
-    public function messages()
+    public function messages(): array
     {
         return [
             ['message1', true],

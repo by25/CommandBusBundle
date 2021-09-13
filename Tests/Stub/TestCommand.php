@@ -42,7 +42,7 @@ class TestCommand implements Command
     }
 
 
-    public function commandName()
+    public function commandName(): string
     {
         return 'test_command';
     }

@@ -16,22 +16,11 @@ class ContainerCommandHandlerMapper implements CommandHandlerMapper
     /**
      * Карта методов вызова
      * [messageName => [service => '...', 'method' => '...']]
-     *
-     * @var array
      */
-    private $callableMap = [];
+    private array $callableMap = [];
 
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    private ContainerInterface $container;
 
-    /**
-     * HandlerMapper constructor.
-     *
-     * @param ContainerInterface $container
-     * @param array $callableMap
-     */
     public function __construct(ContainerInterface $container, array $callableMap)
     {
         $this->container = $container;
@@ -40,22 +29,18 @@ class ContainerCommandHandlerMapper implements CommandHandlerMapper
 
 
     /**
-     * @param $commandName
-     *
      * @return callable
      * @throws HandlerNotFoundException|ServiceNotFoundException|ServiceCircularReferenceException
      */
-    public function get($commandName)
+    public function get(string $commandName)
     {
         if (!array_key_exists($commandName, $this->callableMap)) {
-            throw new HandlerNotFoundException(sprintf(
-                'Could not find a handler for name "%s"',
-                $commandName
-            ));
+            throw new HandlerNotFoundException(
+                sprintf('Could not find a handler for name "%s"', $commandName)
+            );
         }
 
         $callable = $this->callableMap[$commandName];
-
         $methodName = $callable['method'] ?: 'execute';
 
         return [

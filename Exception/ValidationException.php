@@ -25,10 +25,6 @@ class ValidationException extends \RuntimeException
     }
 
 
-    /**
-     * @param ConstraintViolationListInterface $vilations
-     * @return ValidationException
-     */
     public static function createFromConstraintViolationList(ConstraintViolationListInterface $list): self
     {
         $messages = [];
@@ -43,24 +39,12 @@ class ValidationException extends \RuntimeException
     }
 
 
-    /**
-     * @return array
-     */
-    public function getMessages()
+    public function getMessages(): array
     {
         return $this->messages;
     }
 
-
-    /**
-     * Переведенные сообщения об ошибках
-     *
-     * @param TranslatorInterface $translator
-     * @return array
-     *
-     * @throws \Exception
-     */
-    public function getTranslatedMessages(TranslatorInterface $translator)
+    public function getTranslatedMessages(TranslatorInterface $translator): array
     {
         $result = [];
         foreach ($this->messages as $key => $message) {
